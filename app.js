@@ -44,7 +44,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
 .matches('Greeting',(session,args) => {
     session.send('What?');
-}),
+})
 
 .onDefault((session) => {
     session.send('Fuck off.', session.message.text);
