@@ -46,6 +46,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     session.send('What?');
 })
 
+.matches('howIsQ',(session,args) => {
+    session.send('Meh');
+})
 .onDefault((session) => {
     session.send('Fuck off.', session.message.text);
 });
