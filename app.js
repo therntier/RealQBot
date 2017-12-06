@@ -41,9 +41,11 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 // Main dialog with LUIS
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
-/*
-.matches('<yourIntent>')... See details at http://docs.botframework.com/builder/node/guides/understanding-natural-language/
-*/
+
+.matches('Greeting',(session,args) => {
+    session.send('What?');
+}),
+
 .onDefault((session) => {
     session.send('Fuck off.', session.message.text);
 });
