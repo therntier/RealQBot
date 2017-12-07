@@ -47,8 +47,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
 .matches('Greeting',(session,args) => {
 
-    //session.send('What?');
-    session.send(respGreeting[Math.floor(Math.random()*respGreeting.length)])
+    session.send('What?');
+    session.send(respGreeting[Math.floor(Math.random()*respGreeting.length)]);
 })
 
 .matches('howIsQ',(session,args) => {
