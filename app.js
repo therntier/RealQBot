@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------------
 A simple echo bot for the Microsoft Bot Framework. 
 -----------------------------------------------------------------------------*/
+"use strict";
 
 var restify = require('restify');
 var builder = require('botbuilder');
@@ -66,7 +67,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
 .matches('goSomeplace',(session,args,next) => {
     var placeEntity = builder.EnitityRecognizer.findEntity(args.entities, 'Place');
-    session.send("Why would I want to go to ");
+    session.send("Why would I want to go to " + placeEntity);
 })
 
 .onDefault((session) => {
