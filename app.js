@@ -63,6 +63,12 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('howIsPoker',(session,args) => {
     session.send(respHowIsPoker[Math.floor(Math.random()*respHowIsPoker.length)]);
 })
+
+.matches('goSomeplace',(session,args) => {
+    var placeEntity = intent.placeEntity
+    session.send("Why would I want to go to ", placeEntity);
+})
+
 .onDefault((session) => {
     session.send('Fuck off.', session.message.text);
 });
