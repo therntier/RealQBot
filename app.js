@@ -1,7 +1,6 @@
 /*-----------------------------------------------------------------------------
 A simple echo bot for the Microsoft Bot Framework. 
 -----------------------------------------------------------------------------*/
-"use strict";
 
 var restify = require('restify');
 var builder = require('botbuilder');
@@ -48,10 +47,12 @@ var respHowIsPoker = ["So fucked.  I get three outted on the river every fucking
 "I hate poker",
 "Meh"];
 
+
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
 .matches('Greeting',(session,args) => {
+
 
    // session.send('What?');
     session.send(respGreeting[Math.floor(Math.random()*respGreeting.length)]);
@@ -65,10 +66,10 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     session.send(respHowIsPoker[Math.floor(Math.random()*respHowIsPoker.length)]);
 })
 
-.matches('goSomeplace',(session,args,next) => {
-    var placeEntity = builder.EnitityRecognizer.findEntity(args.entities, 'Place');
-    session.send("Why would I want to go to " + placeEntity);
-})
+.matches('goSomeplace', [
+    function (session,args,next)  {
+    session.send("Why would I want to go to ");
+}])
 
 .onDefault((session) => {
     session.send('Fuck off.', session.message.text);
