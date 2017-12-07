@@ -39,16 +39,16 @@ var luisAPIHostName = process.env.LuisAPIHostName || 'westus.api.cognitive.micro
 const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' + luisAppId + '&subscription-key=' + luisAPIKey;
 
 // Main dialog with LUIS
-var recognizer = new builder.LuisRecognizer(LuisModelUrl);
+
 var respGreeting = ["What?","Hey"];
 var respHowIsQ = ["Meh","I haven't killed myself"];
 var respHowIsPoker = ["So fucked.  I get three outted on the river every fucking time.  So sick.",
 "Shitty",
 "I hate poker",
 "Meh"];
+
+var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
-
-
 
 .matches('Greeting',(session,args) => {
 
@@ -64,8 +64,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     session.send(respHowIsPoker[Math.floor(Math.random()*respHowIsPoker.length)]);
 })
 
-.matches('goSomeplace',(session,args) => {
-    var placeEntity = intent.placeEntity
+.matches('goSomeplace',(session,args,next) => {
+    var placeEntity = builder.EnitityRecognizer.findEntity(args.entities, 'Place');
     session.send("Why would I want to go to ", placeEntity);
 })
 
