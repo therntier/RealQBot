@@ -42,8 +42,12 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
+var respGreeting = ["What?","Hey"]
+
 .matches('Greeting',(session,args) => {
-    session.send('What?');
+
+    //session.send('What?');
+    session.send(respGreeting[Math.floor(Math.random()*respGreeting.length)])
 })
 
 .matches('howIsQ',(session,args) => {
