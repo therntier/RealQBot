@@ -41,6 +41,11 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 // Main dialog with LUIS
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var respGreeting = ["What?","Hey"];
+var respHowIsQ = ["Meh","I haven't killed myself"];
+var respHowIsPoker = ["So fucked.  I get three outted on the river every fucking time.  So sick.",
+"Shitty",
+"I hate poker",
+"Meh"];
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
 
@@ -52,11 +57,11 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 })
 
 .matches('howIsQ',(session,args) => {
-    session.send('Meh');
+    session.send(respHowIsQ[Math.floor(Math.random()*respHowIsQ.length)]);
 })
 
 .matches('howIsPoker',(session,args) => {
-    session.send('So fucked.  I get three outted on the river every fucking time.  So sick.');
+    session.send(respHowIsPoker[Math.floor(Math.random()*respHowIsPoker.length)]);
 })
 .onDefault((session) => {
     session.send('Fuck off.', session.message.text);
