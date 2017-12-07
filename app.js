@@ -40,9 +40,10 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 
 // Main dialog with LUIS
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
+var respGreeting = ["What?","Hey"];
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
-var respGreeting = ["What?","Hey"]
+
 
 .matches('Greeting',(session,args) => {
 
