@@ -1,3 +1,5 @@
+require('dotenv-extended').load();
+
 /*-----------------------------------------------------------------------------
 A simple echo bot for the Microsoft Bot Framework. 
 -----------------------------------------------------------------------------*/
@@ -68,6 +70,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
 .matches('goSomeplace', [
     function (session,args,next)  {
+        var intent = args.intent;
+        var placeEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'Place');
     session.send("Why would I want to go to ");
 }])
 
