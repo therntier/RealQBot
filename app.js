@@ -51,27 +51,38 @@ var respHowIsPoker = ["So fucked.  I get three outted on the river every fucking
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
-.matches('Greeting',(session,args) => {
-    session.send(respGreeting[Math.floor(Math.random()*respGreeting.length)]);
-})
+bot.dialog('Greeting', [
+    function (session, args, next) {
+        session.send(respGreeting[Math.floor(Math.random()*respGreeting.length)]);
+    }
+]).triggerAction({
+    matches : 'Greeting'
+});
 
-.matches('howIsQ',(session,args) => {
-    session.send(respHowIsQ[Math.floor(Math.random()*respHowIsQ.length)]);
-})
+bot.dialog('howIsQ', [
+    function (session, args, next) {
+        session.send(respHowIsQ[Math.floor(Math.random()*respHowIsQ.length)]);
+    }
+]).triggerAction({
+    matches : 'howIsQ'
+});
+    
+bot.dialog('howIsPoker', [
+    function (session, args, next) {
+        session.send(respHowIsPoker[Math.floor(Math.random()*respHowIsPoker.length)]);
+    }
+]).triggerAction({
+    matches : 'howIsPoker'
+});
 
-.matches('howIsPoker',(session,args) => {
-    session.send(respHowIsPoker[Math.floor(Math.random()*respHowIsPoker.length)]);
-})
-
-.matches('goSomeplace', [
+bot.dialog('goSomeplace', [
     function (session,args,next)  {
         var intent = args.intent;
         var placeEntity = builder.EntityRecognizer.findEntity(intent.entities, 'Place');
     session.send("Why would I want to go to " +  placeEntity);
-}])
-
-.onDefault((session) => {
-    session.send('Fuck off.', session.message.text);
+    }
+]).triggerAction({
+    matches : 'goSomeplace'
 });
 
 bot.dialog('/', intents);    
