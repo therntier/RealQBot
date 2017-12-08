@@ -84,7 +84,7 @@ bot.dialog('goSomeplace', [
         var placeEntity = builder.EntityRecognizer.findEntity(intent.entities, 'Place');
     
         session.send("Why the fuck would I want to go to " +  placeEntity.entity +"?");
-        session.endDialog("What time?");
+        builder.Prompts.time(session,"What time?");
     }
 ]).triggerAction({
     matches : 'goSomeplace'
