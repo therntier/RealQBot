@@ -41,7 +41,7 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 // Main dialog with LUIS
 
 var respGreeting = ["What?","Hey."];
-var respHowIsQ = ["Meh","I haven't killed myself.","Alive.","One day closer."];
+var respHowIsQ = ["Meh","I haven't killed myself.","Alive.","One day closer.","I hate ilfe."];
 var respHowIsPoker = ["So fucked.  I get three outted on the river every fucking time.  So sick.",
 "Shitty.",
 "I hate poker.",
@@ -79,9 +79,12 @@ bot.dialog('howIsPoker', [
 
 bot.dialog('goSomeplace', [
     function (session,args,next)  {
+        session.sendTyping();
         var intent = args.intent;
         var placeEntity = builder.EntityRecognizer.findEntity(intent.entities, 'Place');
-    session.endDialog("Why the fuck would I want to go to " +  placeEntity.entity +"?");
+    
+        session.send("Why the fuck would I want to go to " +  placeEntity.entity +"?");
+        session.endDialog("What time?");
     }
 ]).triggerAction({
     matches : 'goSomeplace'
