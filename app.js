@@ -55,7 +55,7 @@ bot.recognizer(recognizer);
 
 bot.dialog('Greeting', [
     function (session, args, next) {
-        session.send(respGreeting[Math.floor(Math.random()*respGreeting.length)]);
+        session.endDialog(respGreeting[Math.floor(Math.random()*respGreeting.length)]);
     }
 ]).triggerAction({
     matches : 'Greeting'
@@ -63,7 +63,7 @@ bot.dialog('Greeting', [
 
 bot.dialog('howIsQ', [
     function (session, args, next) {
-        session.send(respHowIsQ[Math.floor(Math.random()*respHowIsQ.length)]);
+        session.endDialog(respHowIsQ[Math.floor(Math.random()*respHowIsQ.length)]);
     }
 ]).triggerAction({
     matches : 'howIsQ'
@@ -71,7 +71,7 @@ bot.dialog('howIsQ', [
     
 bot.dialog('howIsPoker', [
     function (session, args, next) {
-        session.send(respHowIsPoker[Math.floor(Math.random()*respHowIsPoker.length)]);
+        session.endDialog(respHowIsPoker[Math.floor(Math.random()*respHowIsPoker.length)]);
     }
 ]).triggerAction({
     matches : 'howIsPoker'
@@ -81,7 +81,7 @@ bot.dialog('goSomeplace', [
     function (session,args,next)  {
         var intent = args.intent;
         var placeEntity = builder.EntityRecognizer.findEntity(intent.entities, 'Place');
-    session.send("Why the fuck would I want to go to " +  placeEntity.entity +"?");
+    session.endDialog("Why the fuck would I want to go to " +  placeEntity.entity +"?");
     }
 ]).triggerAction({
     matches : 'goSomeplace'
