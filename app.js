@@ -69,8 +69,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('goSomeplace', [
     function (session,args,next)  {
         var intent = args.intent;
-        var placeEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'Place');
-    session.send("Why would I want to go to " + placeEntity);
+        var placeEntity = builder.EntityRecognizer.findEntity(intent.entities, 'Place');
+    session.send("Why would I want to go to " + placeEntity.entity);
 }])
 
 .onDefault((session) => {
