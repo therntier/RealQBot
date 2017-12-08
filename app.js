@@ -51,6 +51,8 @@ var respHowIsPoker = ["So fucked.  I get three outted on the river every fucking
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
+bot.recognizer(recognizer);
+
 bot.dialog('Greeting', [
     function (session, args, next) {
         session.send(respGreeting[Math.floor(Math.random()*respGreeting.length)]);
