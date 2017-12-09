@@ -84,7 +84,7 @@ bot.dialog('doSomething', [
         var entActionObject = builder.EntityRecognizer.findEntity(intent.entities, 'ActionObject');
         var entActivity = builder.EntityRecognizer.findEntity(intent.entities, 'Activity');
     
-        session.send("Why the fuck would I want " + entActivity + " " +  entActionObject.entity +"?");
+        session.send("Why the fuck would I want " + entActivity.entity + " " +  entActionObject.entity +"?");
         builder.Prompts.time(session,"What time?");
         session.endDialog("Sure");
     }
