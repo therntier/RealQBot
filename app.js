@@ -96,9 +96,9 @@ bot.dialog('watchHokey', [
     function (session,args,next)  {
         session.sendTyping();
         var intent = args.intent;
-        var entTeam = builder.EntityRecognizer.findEntity(intent.entities, 'NHLTeam');
+        //var entTeam = builder.EntityRecognizer.findEntity(intent.entities, 'NHLTeam');
     
-        session.send("I will have it on.  Who do " + entTeam.entity + " play?");
+        session.send("I will have it on.  Who do they play?");
     }
 ]).triggerAction({
     matches : 'watchHokey'
