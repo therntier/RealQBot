@@ -92,16 +92,16 @@ bot.dialog('doSomething', [
     matches : 'doSomething'
 });
 
-bot.dialog('watchHokey', [
+bot.dialog('watchHockey', [
     function (session,args,next)  {
         session.sendTyping();
         var intent = args.intent;
-        //var entTeam = builder.EntityRecognizer.findEntity(intent.entities, 'NHLTeam');
+        var entTeam = builder.EntityRecognizer.findEntity(intent.entities, 'NHLTeam');
     
-        session.send("I will have it on.  Who do they play?");
+        session.send("I will have it on.  Who do " + entTeam.entity + " play?");
     }
 ]).triggerAction({
-    matches : 'watchHokey'
+    matches : 'watchHockey'
 });
 
 bot.dialog('/', intents);    
