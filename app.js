@@ -77,14 +77,16 @@ bot.dialog('howIsPoker', [
     matches : 'howIsPoker'
 });
 
-bot.dialog('goSomeplace', [
+bot.dialog('doSomething', [
     function (session,args,next)  {
         session.sendTyping();
         var intent = args.intent;
-        var placeEntity = builder.EntityRecognizer.findEntity(intent.entities, 'Place');
+        var ActionObject = builder.EntityRecognizer.findEntity(intent.entities, 'ActionObject');
+        var Activity = builder.EntityRecognizer.findEntity(intent.entities, 'Activity');
     
-        session.send("Why the fuck would I want to go to " +  placeEntity.entity +"?");
+        session.send("Why the fuck would I want " + Activity + " " +  ActionObject.entity +"?");
         builder.Prompts.time(session,"What time?");
+        session.endDialog("Sure");
     }
 ]).triggerAction({
     matches : 'goSomeplace'
