@@ -98,7 +98,7 @@ bot.dialog('watchHokey', [
         var intent = args.intent;
         var entTeam = builder.EntityRecognizer.findEntity(intent.entities, 'NHLTeam');
     
-        session.send("I will have it on.  Who do " + entTeam.entity + " play?" +  entActionObject.entity +"?");
+        session.send("I will have it on.  Who do " + entTeam.entity + " play?");
     }
 ]).triggerAction({
     matches : 'watchHokey'
