@@ -81,15 +81,15 @@ bot.dialog('doSomething', [
     function (session,args,next)  {
         session.sendTyping();
         var intent = args.intent;
-        var ActionObject = builder.EntityRecognizer.findEntity(intent.entities, 'ActionObject');
-        var Activity = builder.EntityRecognizer.findEntity(intent.entities, 'Activity');
+        var entActionObject = builder.EntityRecognizer.findEntity(intent.entities, 'ActionObject');
+        var entActivity = builder.EntityRecognizer.findEntity(intent.entities, 'Activity');
     
-        session.send("Why the fuck would I want " + Activity + " " +  ActionObject.entity +"?");
+        session.send("Why the fuck would I want " + entActivity + " " +  entActionObject.entity +"?");
         builder.Prompts.time(session,"What time?");
         session.endDialog("Sure");
     }
 ]).triggerAction({
-    matches : 'goSomeplace'
+    matches : 'doSomething'
 });
 
 bot.dialog('/', intents);    
